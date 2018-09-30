@@ -14,6 +14,7 @@ import {AuthorsPage} from '../pages/authors/authors';
 export class MyApp {
     @ViewChild(Nav) navCtrl: Nav;
     rootPage: any = GeneratorPage;
+    activePage: any = 'Generator';
 
     constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
         platform.ready().then(() => {
@@ -22,20 +23,23 @@ export class MyApp {
             statusBar.styleDefault();
             splashScreen.hide();
         });
+
     }
 
-    goToGenerator(params) {
-        if (!params) params = {};
-        this.navCtrl.setRoot(GeneratorPage);
+    MenuItems = [
+        { title: 'Генератор Счастья', name: 'Generator', component: GeneratorPage, icon: 'ios-flame' },
+        { title: 'Что это такое?', name: 'About', component: AboutPage, icon: 'ios-bonfire' },
+        { title: 'Кто это придумал?', name: 'Authors', component: AuthorsPage, icon: 'ios-nutrition' }
+    ];
+
+    openPage(p) {
+        if (!p) p = {};
+        this.navCtrl.setRoot(p.component);
+        this.activePage = p.name;
     }
 
-    goToAbout(params) {
-        if (!params) params = {};
-        this.navCtrl.setRoot(AboutPage);
-    }
 
-    goToAuthors(params) {
-        if (!params) params = {};
-        this.navCtrl.setRoot(AuthorsPage);
+    public checkActivePage(page): boolean{
+        return page.name === this.activePage;
     }
 }

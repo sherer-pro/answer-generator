@@ -16,6 +16,21 @@
 
 #side-menu {
   background: map-get($colors, dark);
+  .item-md {
+    padding-left: 24px;
+    ion-icon[item-left] + .item-inner {
+      margin-left: 16px;
+    }
+    &:not(:last-of-type) {
+      border-bottom: 1px solid map-get($colors, light-dark);
+    }
+    &.active {
+      background-color: map_get($colors, dark-dark);
+    }
+  }
+  .label-md {
+    margin: 19px 8px 19px 0;
+  }
 }
 
 .toolbar-md ion-title {
@@ -27,7 +42,7 @@ ion-menu .toolbar-md ion-title {
 }
 
 .list-md .item-block .item-inner {
-  border-bottom: 1px solid map-get($colors, lightest-dark);
+  border-bottom: none;
 }
 
 #logo {
@@ -51,13 +66,15 @@ ion-menu .toolbar-md ion-title {
   .card-description {
     color: map-get($colors, lightest-dark);
   }
-  .title-button{
+  .title-button {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 }
-.description-container{
+
+.description-container {
   color: map-get($colors, lightest-dark);
   text-align: center;
 }
+

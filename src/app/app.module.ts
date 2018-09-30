@@ -19,7 +19,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     ],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(MyApp, {mode: 'md'})
+        IonicModule.forRoot(MyApp, {mode: 'md', menuType: 'push'})
     ],
     bootstrap: [IonicApp],
     entryComponents: [

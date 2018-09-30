@@ -1,27 +1,21 @@
 <ion-menu [content]="mainContent">
-  <ion-header>
-    <ion-toolbar color="light-dark">
-      <ion-title left>
-        Навигэйшн
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content id="side-menu">
-    <ion-list id="side-menu-list1">
-      <ion-item color="dark" menuClose="" on-click="goToGenerator()" id="side-menu-list-item1">
-        <ion-icon name="ios-flame" item-left color="lightest-dark"></ion-icon>
-        Генератор Счастья
-      </ion-item>
-      <ion-item color="dark" menuClose="" on-click="goToAbout()" id="side-menu-list-item2">
-        <ion-icon name="ios-bonfire" item-left color="lightest-dark"></ion-icon>
-        Что это такое?
-      </ion-item>
-      <ion-item color="dark" menuClose="" on-click="goToAuthors()" id="side-menu-list-item3">
-        <ion-icon name="ios-nutrition" item-left color="lightest-dark"></ion-icon>
-        Кто это придумал?
-      </ion-item>
-    </ion-list>
-  </ion-content>
+    <ion-header>
+        <ion-toolbar color="light-dark">
+            <ion-title left>
+                Навигэйшн
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content id="side-menu">
+        <ion-list id="side-menu-list1">
+            <ion-item color="dark" menuClose id="side-menu-list-item1"
+                      *ngFor="let p of MenuItems"
+                      [class.active]="checkActivePage(p)"  on-click="openPage(p)">
+                <ion-icon name="{{p.icon}}" item-left color="lightest-dark"></ion-icon>
+                {{p.title}}
+            </ion-item>
+        </ion-list>
+    </ion-content>
 </ion-menu>
 
 <ion-nav #mainContent [root]="rootPage"></ion-nav>
