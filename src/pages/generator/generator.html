@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar color="dark">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title left>
+            Генератор
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding id="generator">
+    <div id="generator-container">
+        <img width="100%" src="/assets/imgs/logo.jpg" id="logo"/>
+        <form id="generator-form">
+            <ion-card color="dark">
+                <ion-card-content>
+                    <ion-list>
+                        <ion-item id="generator-toggle1" large  color="dark">
+                            <ion-icon name="ios-photos" item-left color="lightest-dark"></ion-icon>
+                            <ion-label color="light">
+                                Хочу квадрат
+                            </ion-label>
+                            <ion-toggle color="danger" checked="true"></ion-toggle>
+                        </ion-item>
+                        <ion-item id="generator-toggle2" large  color="dark">
+                            <ion-icon name="ios-chatboxes" item-left color="lightest-dark" large></ion-icon>
+                            <ion-label color="light">
+                                Хочу коммент
+                            </ion-label>
+                            <ion-toggle color="danger" checked="true"></ion-toggle>
+                        </ion-item>
+                    </ion-list>
+                </ion-card-content>
+            </ion-card>
+        </form>
+    </div>
+    <button id="generator-button" ion-button color="danger" block large (click)="presentLoading()">
+        ГЕНЕРИРУЙ МЕНЯ
+    </button>
+    <div class="description-container">
+        <small>Нажимая кнопку "Генерируй меня", вы принимаете условия и правила современного общества, как бы тяжело и неприятно это не было.</small>
+    </div>
+</ion-content>
