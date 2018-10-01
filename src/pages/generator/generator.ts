@@ -24,11 +24,16 @@ export class GeneratorPage {
 
     messageData: any = {
         comment: {},
-        image: ''
+        image: '',
+        imageURL: ''
     };
     public toggleSquare: boolean = true;
     public toggleComment: boolean = true;
     public toggleButton: boolean = true;
+    public readyGenerator: boolean = false;
+    public messageDataText: boolean = false;
+    public messageDataImage: boolean = false;
+    public imageURL: any;
 
     checkButton() {
         this.toggleButton = this.toggleSquare || this.toggleComment;
@@ -37,9 +42,25 @@ export class GeneratorPage {
     getData() {
         const $this = this;
 
+        function randInt(min, max) {
+            var rand = min - 0.5 + Math.random() * (max - min + 1);
+            rand = Math.round(rand);
+            return rand;
+        }
+
+        function pad(str, max) {
+            str = str.toString();
+            return str.length < max ? pad('0' + str, max) : str;
+        }
+
         if (this.toggleComment) {
             const loader = this.loadingCtrl.create({
-                content: "Жди, мы выбираем лучший черный..."
+                content: 'Жди, мы выбираем лучший черный...'
+            });
+
+            const toastText = this.toastCtrl.create({
+                message: 'Не могу получить файл. Сорян :(',
+                duration: 3000
             });
 
             loader.present();
@@ -61,13 +82,12 @@ export class GeneratorPage {
                     };
                     $this.messageData.comment = result;
                     loader.dismiss();
+                    $this.readyGenerator = true;
+                    $this.messageDataText = true;
                 } else {
-                    result = {
-                        status: 'error',
-                        text: resultObj.errorCode
-                    };
-                    $this.messageData.comment = result;
+                    toastText.present();
                     loader.dismiss();
+                    $this.messageDataText = false;
                 }
             };
 
@@ -76,16 +96,21 @@ export class GeneratorPage {
                     status: 'error',
                     text: this.status
                 };
-                $this.messageData.comment = result;
+                toastText.present();
                 loader.dismiss();
+                $this.messageDataText = false;
 
             };
 
             xhr.send();
 
+        } else {
+            $this.messageData.comment = {};
+            $this.messageDataText = false;
         }
 
         if (this.toggleSquare) {
+
             const toastDir = this.toastCtrl.create({
                 message: 'Не могу достучаться до папки. Сорян :(',
                 duration: 3000
@@ -100,40 +125,58 @@ export class GeneratorPage {
             });
 
             const getImage = function () {
-                let filename = '01.jpg';
+
+                let filename = pad(randInt(1, 15), 2)+'.png';
                 const ROOT_DIRECTORY = $this.file.cacheDirectory;
                 const downloadFolderName = 'tempDownload';
 
                 $this.file.createDir(ROOT_DIRECTORY, downloadFolderName, true)
                     .then((entries) => {
-                        $this.file.copyFile($this.file.applicationDirectory + "www/assets/squares/", filename, ROOT_DIRECTORY + downloadFolderName + '//', filename)
+                        $this.file.copyFile($this.file.applicationDirectory + 'www/assets/squares/', filename, ROOT_DIRECTORY + downloadFolderName + '//', filename)
                             .then((entries) => {
-                                $this.messageData.image = ROOT_DIRECTORY + downloadFolderName + "/" + filename;
+                                $this.messageData.image = ROOT_DIRECTORY + downloadFolderName + '/' + filename;
+
+                                $this.file.readAsDataURL(ROOT_DIRECTORY + downloadFolderName + '/', filename).then(dataURL => {
+                                    $this.imageURL = dataURL
+                                });
+
+                                $this.readyGenerator = true;
+                                $this.messageDataImage = true;
                             })
-                            .catch((error) => toastFile.present());
+                            .catch((error) => {
+                                toastFile.present();
+                                $this.messageDataImage = false;
+                            });
                     })
-                    .catch((error) => toastDirCreate.present());
+                    .catch((error) => {
+                        toastDirCreate.present();
+                        $this.messageDataImage = false;
+                    });
             };
 
             this.file.checkDir(this.file.applicationDirectory, './squares/')
                 .then((entries) => getImage())
-                .catch((error) => toastDir.present());
+                .catch((error) => {
+                    toastDir.present();
+                    $this.messageDataImage = false;
+                });
+        } else {
+            $this.messageData.image = '';
+            $this.imageURL = '';
+            $this.messageDataImage = false;
         }
-
-        this.formatMessage();
     }
 
-    formatMessage() {
-        if (this.messageData.comment.status === 'success') {
-
+   shareMessage() {
+        const toastShare = this.toastCtrl.create({
+            message: 'Не получается расшарить. Сорян :(',
+            duration: 3000
+        });
+        if (this.messageData.comment.status === 'success' || this.messageData.image !== '') {
+            this.socialSharing.share(this.messageData.comment.text, '', this.messageData.image,'#alikimovichsblacksquares')
+                .then((entries) => {
+                })
+                .catch((error) => toastShare.present());
         }
-        // this.socialSharing.share(this.messageData.comment.text, "", this.messageData.image)
-        //     .then((entries) => {
-        //         console.log('success ' + JSON.stringify(entries));
-        //     })
-        //     .catch((error) => {
-        //         //TODO: обработать
-        //         alert('error ' + JSON.stringify(error));
-        //     });
     }
 }

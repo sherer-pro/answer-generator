@@ -10,8 +10,24 @@
 </ion-header>
 <ion-content padding id="generator">
     <div id="generator-container">
-        <div id="generator-bg">
+        <div id="generator-bg" [class.hide]="readyGenerator">
             <img width="100%" src="/assets/imgs/logo.jpg"/>
+        </div>
+        <div id="generator-result" [class.hide]="!readyGenerator">
+            <ion-card color="dark">
+                <div id="image-container" [class.show-text]="messageDataText && messageDataImage">
+                    <img src="{{imageURL}}" [class.hide]="!messageDataImage" width="150" height="150"/>
+                    <!--<img src="/assets/imgs/example.png" width="150" height="150"/>-->
+                </div>
+                <ion-card-content [class.hide]="!messageDataText">
+                    <p>{{messageData.comment.text}}</p>
+                </ion-card-content>
+
+            </ion-card>
+            <button id="share-button" ion-button color="danger" block large (click)="shareMessage()"
+                    [class.hide]="!readyGenerator">
+                <span>ШАРЬ МЕНЯ</span>
+            </button>
         </div>
         <form id="generator-form">
             <ion-card color="dark">
@@ -22,7 +38,8 @@
                             <ion-label color="light">
                                 Хочу Квадрат
                             </ion-label>
-                            <ion-toggle color="danger" checked="true" [(ngModel)]="toggleSquare" (ionChange)="checkButton()"
+                            <ion-toggle color="danger" checked="true" [(ngModel)]="toggleSquare"
+                                        (ionChange)="checkButton()"
                                         name="square"></ion-toggle>
                         </ion-item>
                         <ion-item id="generator-toggle2" large color="dark">
@@ -30,7 +47,8 @@
                             <ion-label color="light">
                                 Хочу Коммент
                             </ion-label>
-                            <ion-toggle color="danger" checked="true" [(ngModel)]="toggleComment" (ionChange)="checkButton()"
+                            <ion-toggle color="danger" checked="true" [(ngModel)]="toggleComment"
+                                        (ionChange)="checkButton()"
                                         name="comment"></ion-toggle>
                         </ion-item>
                     </ion-list>
@@ -39,11 +57,11 @@
         </form>
     </div>
     <button id="generator-button" ion-button color="danger" block large (click)="getData()" [disabled]="!toggleButton">
-        ГЕНЕРИРУЙ МЕНЯ
+        <span>ГЕНЕРИРУЙ МЕНЯ</span>
     </button>
     <div class="description-container">
-        <small>Нажимая кнопку "Генерируй меня", вы принимаете условия и правила современного общества, как бы тяжело и
-            неприятно это не было.
+        <small>Нажимая кнопку "Генерируй меня", вы принимаете условия и правила поведения в современном обществе, какими
+            бы абсурдными они не казались.
         </small>
     </div>
 </ion-content>

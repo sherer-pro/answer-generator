@@ -48,3 +48,19 @@ ion-menu .toolbar-md ion-title {
 .item-md {
   padding-left: 8px;
 }
+
+
+.item-md-dark {
+  .card-divider {
+    background-color: map-get($colors, light-dark);
+    margin: 10px 0;
+  }
+  .card-description {
+    color: map-get($colors, lightest-dark);
+  }
+  .title-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

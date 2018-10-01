@@ -7,13 +7,33 @@ page-generator {
     position: relative;
   }
 
-  #generator-container {
-    margin-bottom: 30px;
+  .button {
+    .icon {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+    }
   }
 
   .description-container {
     color: map-get($colors, lightest-dark);
     text-align: center;
   }
-
+  #image-container {
+    &.show-text {
+      margin-bottom: -16px;
+    }
+    img {
+      max-width: 150px;
+    }
+  }
+  #generator-result {
+    .card {
+      border: 3px solid map_get($colors, danger);
+      margin-top: 0;
+    }
+    .card-content {
+      padding: 16px;
+    }
+  }
 }
