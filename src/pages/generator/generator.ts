@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {LoadingController, NavController, ToastController} from 'ionic-angular';
+import {LoadingController, NavController, ToastController, ModalController } from 'ionic-angular';
 import {File} from '@ionic-native/file';
 import {SocialSharing} from '@ionic-native/social-sharing';
 import {FileOpener} from '@ionic-native/file-opener';
@@ -17,7 +17,8 @@ export class GeneratorPage {
         public file: File,
         public toastCtrl: ToastController,
         public socialSharing: SocialSharing,
-        public fileOpener: FileOpener
+        public fileOpener: FileOpener,
+        public modalCtrl: ModalController
     ) {
     }
 
@@ -80,8 +81,16 @@ export class GeneratorPage {
         }
 
         if (this.toggleSquare) {
-            const toastSquare = this.toastCtrl.create({
+            const toastDir = this.toastCtrl.create({
                 message: 'Не могу достучаться до папки. Сорян :(',
+                duration: 3000
+            });
+            const toastDirCreate = this.toastCtrl.create({
+                message: 'Не могу создать временную папку. Сорян :(',
+                duration: 3000
+            });
+            const toastFile = this.toastCtrl.create({
+                message: 'Не могу достучаться до файла. Сорян :(',
                 duration: 3000
             });
 
@@ -96,21 +105,14 @@ export class GeneratorPage {
                             .then((entries) => {
                                 $this.messageData.image = ROOT_DIRECTORY + downloadFolderName + "/" + filename;
                             })
-                            .catch((error) => {
-                                //TODO: обработать
-                                alert('error ' + JSON.stringify(error));
-                            });
+                            .catch((error) => toastFile.present());
                     })
-                    .catch((error) => {
-                        //TODO: обработать
-                        alert('error ' + JSON.stringify(error));
-                    });
-                // $this.messageData.image = $this.file.readAsDataURL($this.file.applicationDirectory, 'www/assets/squares/01.jpg');
+                    .catch((error) => toastDirCreate.present());
             };
 
             this.file.checkDir(this.file.applicationDirectory, './squares/')
                 .then((entries) => getImage())
-                .catch((error) => toastSquare.present());
+                .catch((error) => toastDir.present());
         }
 
         this.formatMessage();

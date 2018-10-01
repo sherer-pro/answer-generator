@@ -45,37 +45,6 @@ ion-menu .toolbar-md ion-title {
   border-bottom: none;
 }
 
-#generator-bg {
-  margin-bottom: 20px;
-  overflow: hidden;
-  height: calc(100vh - 380px);
-  position: relative;
-}
-
-#generator-container {
-  margin-bottom: 30px;
-}
-
 .item-md {
   padding-left: 8px;
-}
-
-.item-md-dark {
-  .card-divider {
-    background-color: map-get($colors, light-dark);
-    margin: 10px 0;
-  }
-  .card-description {
-    color: map-get($colors, lightest-dark);
-  }
-  .title-button {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-}
-
-.description-container {
-  color: map-get($colors, lightest-dark);
-  text-align: center;
 }

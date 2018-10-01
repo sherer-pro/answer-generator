@@ -1,3 +1,19 @@
 page-generator {
 
+  #generator-bg {
+    margin-bottom: 20px;
+    overflow: hidden;
+    height: calc(100vh - 380px);
+    position: relative;
+  }
+
+  #generator-container {
+    margin-bottom: 30px;
+  }
+
+  .description-container {
+    color: map-get($colors, lightest-dark);
+    text-align: center;
+  }
+
 }
