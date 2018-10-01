@@ -45,9 +45,11 @@ ion-menu .toolbar-md ion-title {
   border-bottom: none;
 }
 
-#logo {
+#generator-bg {
   margin-bottom: 20px;
-  box-shadow: $card-md-box-shadow;
+  overflow: hidden;
+  height: calc(100vh - 380px);
+  position: relative;
 }
 
 #generator-container {
@@ -77,4 +79,3 @@ ion-menu .toolbar-md ion-title {
   color: map-get($colors, lightest-dark);
   text-align: center;
 }
-

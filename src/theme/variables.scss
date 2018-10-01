@@ -52,6 +52,9 @@ $toolbar-md-title-font-size: 1.7rem;
 $picker-md-toolbar-height: 44px;
 $card-md-margin-left: 0;
 $card-md-margin-right: 0;
+$toast-md-background: map-get($colors, danger);
+$card-md-box-shadow: none;
+$card-md-border-radius: 0;
 
 // App Theme
 // --------------------------------------------------

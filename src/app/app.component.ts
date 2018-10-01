@@ -16,20 +16,25 @@ export class MyApp {
     rootPage: any = GeneratorPage;
     activePage: any = 'Generator';
 
-    constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+    constructor(
+        platform: Platform,
+        statusBar: StatusBar,
+        splashScreen: SplashScreen) {
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
-            statusBar.styleDefault();
+            // statusBar.styleDefault();
             splashScreen.hide();
+
+            statusBar.hide();
         });
 
     }
 
     MenuItems = [
-        { title: 'Генератор Счастья', name: 'Generator', component: GeneratorPage, icon: 'ios-flame' },
-        { title: 'Что это такое?', name: 'About', component: AboutPage, icon: 'ios-bonfire' },
-        { title: 'Кто это придумал?', name: 'Authors', component: AuthorsPage, icon: 'ios-nutrition' }
+        {title: 'КвадратоГенератор', name: 'Generator', component: GeneratorPage, icon: 'ios-flame'},
+        {title: 'Что это такое?', name: 'About', component: AboutPage, icon: 'ios-bonfire'},
+        {title: 'Кто это придумал?', name: 'Authors', component: AuthorsPage, icon: 'ios-nutrition'}
     ];
 
     openPage(p) {
@@ -39,7 +44,7 @@ export class MyApp {
     }
 
 
-    public checkActivePage(page): boolean{
+    public checkActivePage(page): boolean {
         return page.name === this.activePage;
     }
 }
