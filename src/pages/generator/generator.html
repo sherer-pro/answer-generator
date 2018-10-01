@@ -22,7 +22,7 @@
                             <ion-label color="light">
                                 Хочу Квадрат
                             </ion-label>
-                            <ion-toggle color="danger" checked="true" [(ngModel)]="toggleSquare"
+                            <ion-toggle color="danger" checked="true" [(ngModel)]="toggleSquare" (ionChange)="checkButton()"
                                         name="square"></ion-toggle>
                         </ion-item>
                         <ion-item id="generator-toggle2" large color="dark">
@@ -30,7 +30,7 @@
                             <ion-label color="light">
                                 Хочу Коммент
                             </ion-label>
-                            <ion-toggle color="danger" checked="true" [(ngModel)]="toggleComment"
+                            <ion-toggle color="danger" checked="true" [(ngModel)]="toggleComment" (ionChange)="checkButton()"
                                         name="comment"></ion-toggle>
                         </ion-item>
                     </ion-list>
@@ -38,7 +38,7 @@
             </ion-card>
         </form>
     </div>
-    <button id="generator-button" ion-button color="danger" block large (click)="getData()">
+    <button id="generator-button" ion-button color="danger" block large (click)="getData()" [disabled]="!toggleButton">
         ГЕНЕРИРУЙ МЕНЯ
     </button>
     <div class="description-container">

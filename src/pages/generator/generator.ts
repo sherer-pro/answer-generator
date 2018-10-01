@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {LoadingController, NavController, ToastController, ModalController } from 'ionic-angular';
+import {LoadingController, ModalController, NavController, ToastController} from 'ionic-angular';
 import {File} from '@ionic-native/file';
 import {SocialSharing} from '@ionic-native/social-sharing';
 import {FileOpener} from '@ionic-native/file-opener';
@@ -28,6 +28,11 @@ export class GeneratorPage {
     };
     public toggleSquare: boolean = true;
     public toggleComment: boolean = true;
+    public toggleButton: boolean = true;
+
+    checkButton() {
+        this.toggleButton = this.toggleSquare || this.toggleComment;
+    }
 
     getData() {
         const $this = this;
@@ -119,7 +124,7 @@ export class GeneratorPage {
     }
 
     formatMessage() {
-        if(this.messageData.comment.status === 'success'){
+        if (this.messageData.comment.status === 'success') {
 
         }
         // this.socialSharing.share(this.messageData.comment.text, "", this.messageData.image)
