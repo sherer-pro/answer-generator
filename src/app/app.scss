@@ -62,5 +62,8 @@ ion-menu .toolbar-md ion-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .item-button{
+      flex-shrink: 0;
+    }
   }
 }

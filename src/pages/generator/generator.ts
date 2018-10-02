@@ -3,11 +3,12 @@ import {LoadingController, ModalController, NavController, ToastController} from
 import {File} from '@ionic-native/file';
 import {SocialSharing} from '@ionic-native/social-sharing';
 import {FileOpener} from '@ionic-native/file-opener';
+import {GoogleAnalytics} from '@ionic-native/google-analytics';
 
 @Component({
     selector: 'page-generator',
     templateUrl: 'generator.html',
-    providers: [File, SocialSharing, FileOpener],
+    providers: [File, SocialSharing, FileOpener, GoogleAnalytics],
 })
 export class GeneratorPage {
 
@@ -18,7 +19,8 @@ export class GeneratorPage {
         public toastCtrl: ToastController,
         public socialSharing: SocialSharing,
         public fileOpener: FileOpener,
-        public modalCtrl: ModalController
+        public modalCtrl: ModalController,
+        private ga: GoogleAnalytics
     ) {
     }
 
@@ -126,7 +128,7 @@ export class GeneratorPage {
 
             const getImage = function () {
 
-                let filename = pad(randInt(1, 15), 2)+'.png';
+                let filename = pad(randInt(1, 15), 2) + '.png';
                 const ROOT_DIRECTORY = $this.file.cacheDirectory;
                 const downloadFolderName = 'tempDownload';
 
@@ -167,13 +169,21 @@ export class GeneratorPage {
         }
     }
 
-   shareMessage() {
+    shareMessage() {
+        this.ga.startTrackerWithId('UA-126805248-1')
+            .then(() => {
+                console.log('Google analytics is ready now');
+                this.ga.trackEvent('engagement','share');
+            })
+            .catch(e => console.log('Error starting GoogleAnalytics', e));
+
         const toastShare = this.toastCtrl.create({
             message: 'Не получается расшарить. Сорян :(',
             duration: 3000
         });
+
         if (this.messageData.comment.status === 'success' || this.messageData.image !== '') {
-            this.socialSharing.share(this.messageData.comment.text, '', this.messageData.image,'#alikimovichsblacksquares')
+            this.socialSharing.share(this.messageData.comment.text, '', this.messageData.image, '#alikimovichsblacksquares')
                 .then((entries) => {
                 })
                 .catch((error) => toastShare.present());
