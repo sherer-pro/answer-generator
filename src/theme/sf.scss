@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'San Francisco';
+  src: url('../assets/fonts/sfuidisplay-bold.woff2') format('woff2'),
+  url('../assets/fonts/sfuidisplay-bold.woff') format('woff'),
+  url('../assets/fonts/sfuidisplay-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco';
+  src: url('../assets/fonts/sfuidisplay-light.woff2') format('woff2'),
+  url('../assets/fonts/sfuidisplay-light.woff') format('woff'),
+  url('../assets/fonts/sfuidisplay-light.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco';
+  src: url('../assets/fonts/sfuidisplay-regular.woff2') format('woff2'),
+  url('../assets/fonts/sfuidisplay-regular.woff') format('woff'),
+  url('../assets/fonts/sfuidisplay-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'San Francisco';
+  src: url('../assets/fonts/sfuidisplay-semibold.woff2') format('woff2'),
+  url('../assets/fonts/sfuidisplay-semibold.woff') format('woff'),
+  url('../assets/fonts/sfuidisplay-semibold.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}

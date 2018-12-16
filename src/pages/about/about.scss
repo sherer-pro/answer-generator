@@ -1,2 +1,18 @@
 page-about {
+  .close-circle {
+    position: absolute;
+    top: 6px;
+    right: 0;
+  }
+  h2 {
+    margin-top: 0;
+    margin-bottom: -12px;
+  }
+  p {
+    margin-bottom: 40px;
+    //margin-top: 3px;
+  }
+  .authors {
+    margin-top: 60px;
+  }
 }

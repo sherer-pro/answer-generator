@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('../assets/fonts/bebasneue_bold.woff2') format('woff2'),
+  url('../assets/fonts/bebasneue_bold.woff') format('woff'),
+  url('../assets/fonts/bebasneue_bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('../assets/fonts/bebasneue_book.woff2') format('woff2'),
+  url('../assets/fonts/bebasneue_book.woff') format('woff'),
+  url('../assets/fonts/bebasneue_book.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('../assets/fonts/bebasneue_light.woff2') format('woff2'),
+  url('../assets/fonts/bebasneue_light.woff') format('woff'),
+  url('../assets/fonts/bebasneue_light.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('../assets/fonts/bebasneue_regular.woff2') format('woff2'),
+  url('../assets/fonts/bebasneue_regular.woff') format('woff'),
+  url('../assets/fonts/bebasneue_regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('../assets/fonts/bebasneue_thin.woff2') format('woff2'),
+  url('../assets/fonts/bebasneue_thin.woff') format('woff'),
+  url('../assets/fonts/bebasneue_thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}

@@ -1,19 +1,17 @@
-<ion-header>
-  <ion-navbar color="dark">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title left>
-      Что это такое?
-    </ion-title>
-  </ion-navbar>
-</ion-header>
 <ion-content padding id="about">
-  <div id="about-container">
-    <ion-card color="dark">
-      <ion-card-content>
-        Мы понятия не имеем. Само написалось.
-      </ion-card-content>
-    </ion-card>
-  </div>
+    <div id="about-container">
+        <h1>
+            <span>О проекте</span>
+            <img src="/assets/imgs/cross.png" width="24" height="24" (click)="goToGenerator()" class="close-circle"/>
+        </h1>
+        <p>На случай важных переговоров. <br>Важных. Переговоров.</p>
+        <div class="authors">
+            <img src="/assets/imgs/alikimovich.png" width="105" height="105"/>
+            <h2>Андрей Аликимович</h2>
+            <p>Создатель черной материи</p>
+            <img src="/assets/imgs/fish.png" width="105" height="105"/>
+            <h2>fish-text.ru</h2>
+            <p>Генератор текстов</p>
+        </div>
+    </div>
 </ion-content>

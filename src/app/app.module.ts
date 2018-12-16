@@ -4,7 +4,7 @@ import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
 import {GeneratorPage} from '../pages/generator/generator';
 import {AboutPage} from '../pages/about/about';
-import {AuthorsPage} from '../pages/authors/authors';
+import {ResultPage} from '../pages/result/result';
 
 
 import {StatusBar} from '@ionic-native/status-bar';
@@ -15,7 +15,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
         MyApp,
         GeneratorPage,
         AboutPage,
-        AuthorsPage
+        ResultPage
     ],
     imports: [
         BrowserModule,
@@ -26,7 +26,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
         MyApp,
         GeneratorPage,
         AboutPage,
-        AuthorsPage
+        ResultPage
     ],
     providers: [
         StatusBar,

@@ -1,0 +1,27 @@
+<ion-content padding id="generator">
+    <div id="generator-container">
+        <div id="generator-bg" [class.hide]="readyGenerator">
+            <img src=""/>
+        </div>
+        <div id="generator-result" [class.hide]="!readyGenerator">
+            <ion-card color="dark">
+                <div id="image-container" [class.show-text]="messageDataText && messageDataImage">
+                    <img src="{{imageURL}}" [class.hide]="!messageDataImage" width="150" height="150"/>
+                    <!--<img src="/assets/imgs/example.png" width="150" height="150"/>-->
+                </div>
+                <ion-card-content [class.hide]="!messageDataText">
+                    <p>{{messageData.comment.text}}</p>
+                </ion-card-content>
+
+            </ion-card>
+            <button id="share-button" ion-button color="danger" block large (click)="shareMessage()"
+                    [class.hide]="!readyGenerator">
+                <span>ШАРЬ МЕНЯ</span>
+            </button>
+        </div>
+
+    </div>
+    <button id="generator-button" ion-button large (click)="getData()" [disabled]="!toggleButton">
+        <span>Сгенерировать ответ</span>
+    </button>
+</ion-content>

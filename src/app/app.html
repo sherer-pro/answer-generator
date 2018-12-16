@@ -1,21 +1,21 @@
-<ion-menu [content]="mainContent">
-    <ion-header>
-        <ion-toolbar color="light-dark">
-            <ion-title left>
-                Навигэйшн
-            </ion-title>
-        </ion-toolbar>
-    </ion-header>
-    <ion-content id="side-menu">
-        <ion-list id="side-menu-list1">
-            <ion-item color="dark" menuClose id="side-menu-list-item1"
-                      *ngFor="let p of MenuItems"
-                      [class.active]="checkActivePage(p)"  on-click="openPage(p)">
-                <ion-icon name="{{p.icon}}" item-left color="lightest-dark"></ion-icon>
-                {{p.title}}
-            </ion-item>
-        </ion-list>
-    </ion-content>
-</ion-menu>
+<!--<ion-menu [content]="mainContent">-->
+    <!--<ion-header>-->
+        <!--<ion-toolbar color="light-dark">-->
+            <!--<ion-title left>-->
+                <!--Навигэйшн-->
+            <!--</ion-title>-->
+        <!--</ion-toolbar>-->
+    <!--</ion-header>-->
+    <!--<ion-content id="side-menu">-->
+        <!--<ion-list id="side-menu-list1">-->
+            <!--<ion-item color="dark" menuClose id="side-menu-list-item1"-->
+                      <!--*ngFor="let p of MenuItems"-->
+                      <!--[class.active]="checkActivePage(p)"  on-click="openPage(p)">-->
+                <!--<ion-icon name="{{p.icon}}" item-left color="lightest-dark"></ion-icon>-->
+                <!--{{p.title}}-->
+            <!--</ion-item>-->
+        <!--</ion-list>-->
+    <!--</ion-content>-->
+<!--</ion-menu>-->
 
 <ion-nav #mainContent [root]="rootPage"></ion-nav>

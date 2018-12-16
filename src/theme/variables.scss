@@ -1,10 +1,6 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
-// Font path is used to include ionicons,
-// roboto, and noto sans fonts
-$font-path: "../assets/fonts";
-
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
 // http://ionicframework.com/docs/theming/rtl-support/
@@ -31,13 +27,15 @@ $colors: (
         primary: #488aff,
         secondary: #32db64,
         danger: #c23131,
-        light: #f4f4f4,
-        lightest-dark: #9c9c9c,
+        light: #f6f6f6,
+        lightest-dark: #848484,
         light-dark: #383838,
         dark: #222,
         dark-dark: #111111
 );
-$background-color: map-get($colors, light-dark);
+$background-color: map-get($colors, light);
+$font-family-md-base: "San Francisco", "Helvetica Neue", "Roboto", sans-serif;
+$font-family-ios-base: "San Francisco", "Helvetica Neue", "Roboto", sans-serif;
 
 // App iOS Variables
 // --------------------------------------------------
@@ -56,6 +54,10 @@ $toast-md-background: map-get($colors, danger);
 $card-md-box-shadow: none;
 $card-md-border-radius: 0;
 
+$h1-font-size: 30px;
+$h2-font-size: 16px;
+$content-padding: 35px 40px;
+
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can
@@ -65,15 +67,8 @@ $card-md-border-radius: 0;
 
 @import "ionic.theme.default";
 
-// Ionicons
-// --------------------------------------------------
-// The premium icon font for Ionic. For more info, please see:
-// http://ionicframework.com/docs/ionicons/
-
-@import "ionic.ionicons";
-
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
-@import "noto-sans";
+@import "bebas";
+@import "sf";

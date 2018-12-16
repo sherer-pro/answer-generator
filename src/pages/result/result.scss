@@ -1,0 +1,27 @@
+page-result {
+
+  .button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 35px;
+  }
+
+  #image-container {
+    &.show-text {
+      margin-bottom: -16px;
+    }
+    img {
+      max-width: 150px;
+    }
+  }
+  #generator-result {
+    .card {
+      border: 3px solid map_get($colors, danger);
+      margin-top: 0;
+    }
+    .card-content {
+      padding: 16px;
+    }
+  }
+}
