@@ -24,6 +24,8 @@
   font-weight: 500;
   height: 60px;
   box-shadow: none;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 h1 {
@@ -42,5 +44,19 @@ h2 {
 }
 
 p {
-  color: map-get($colors, lightest-dark)
+  color: map-get($colors, lightest-dark);
 }
+
+.close-circle {
+  position: absolute;
+  top: 6px;
+  right: 0;
+}
+
+#generator-container {
+  position: relative;
+  flex-shrink: 0;
+  max-width: 100%;
+  width: 100%;
+}
+

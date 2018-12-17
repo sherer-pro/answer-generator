@@ -1,27 +1,25 @@
-<ion-content padding id="generator">
+<ion-content padding id="result">
     <div id="generator-container">
+        <h1>
+            <span>Ваш ответ</span>
+            <img src="/assets/imgs/help-circle.png" width="24" height="24" (click)="goToAbout()" class="close-circle"/>
+        </h1>
         <div id="generator-bg" [class.hide]="readyGenerator">
             <img src=""/>
         </div>
         <div id="generator-result" [class.hide]="!readyGenerator">
-            <ion-card color="dark">
-                <div id="image-container" [class.show-text]="messageDataText && messageDataImage">
-                    <img src="{{imageURL}}" [class.hide]="!messageDataImage" width="150" height="150"/>
-                    <!--<img src="/assets/imgs/example.png" width="150" height="150"/>-->
-                </div>
-                <ion-card-content [class.hide]="!messageDataText">
-                    <p>{{messageData.comment.text}}</p>
-                </ion-card-content>
-
-            </ion-card>
-            <button id="share-button" ion-button color="danger" block large (click)="shareMessage()"
-                    [class.hide]="!readyGenerator">
-                <span>ШАРЬ МЕНЯ</span>
-            </button>
+            <div id="image-container" [class.show-text]="messageDataText && messageDataImage">
+                <img src="{{imageURL}}" [class.hide]="!messageDataImage" width="150" height="150"/>
+                <img src="/assets/imgs/example.png" width="145" height="145" [class.hide]="isProduction"/>
+            </div>
+            <div id="text-container" [class.hide]="!messageDataText">
+                <p>{{messageData.comment.text}}</p>
+                <img src="/assets/imgs/share.png" width="30" height="30" id="share-button" (click)="shareMessage()"
+                     [class.hide]="!readyGenerator"/>
+            </div>
         </div>
-
     </div>
-    <button id="generator-button" ion-button large (click)="getData()" [disabled]="!toggleButton">
-        <span>Сгенерировать ответ</span>
+    <button id="generator-button" ion-button large (click)="getData()">
+        <span>Сгенерировать другой ответ</span>
     </button>
 </ion-content>

@@ -4,12 +4,14 @@ import {File} from '@ionic-native/file';
 import {SocialSharing} from '@ionic-native/social-sharing';
 import {FileOpener} from '@ionic-native/file-opener';
 import {GoogleAnalytics} from '@ionic-native/google-analytics';
+import {AboutPage} from "../about/about";
 
 @Component({
     selector: 'page-result',
     templateUrl: 'result.html',
     providers: [File, SocialSharing, FileOpener, GoogleAnalytics],
 })
+
 export class ResultPage {
 
     constructor(
@@ -29,17 +31,12 @@ export class ResultPage {
         image: '',
         imageURL: ''
     };
-    public toggleSquare: boolean = true;
-    public toggleComment: boolean = true;
-    public toggleButton: boolean = true;
-    public readyResult: boolean = false;
+    public isProduction: boolean = true;
+    public readyGenerator: boolean = false;
     public messageDataText: boolean = false;
     public messageDataImage: boolean = false;
     public imageURL: any;
 
-    checkButton() {
-        this.toggleButton = this.toggleSquare || this.toggleComment;
-    }
 
     getData() {
         const $this = this;
@@ -55,63 +52,57 @@ export class ResultPage {
             return str.length < max ? pad('0' + str, max) : str;
         }
 
-        if (this.toggleComment) {
-            const loader = this.loadingCtrl.create({
-                content: 'Жди, мы выбираем лучший черный...'
-            });
+        const loader = this.loadingCtrl.create({
+            content: 'Жди, мы выбираем лучший черный...'
+        });
 
-            const toastText = this.toastCtrl.create({
-                message: 'Не могу получить файл. Сорян :(',
-                duration: 3000
-            });
+        const toastText = this.toastCtrl.create({
+            message: 'Не могу получить файл. Сорян :(',
+            duration: 3000
+        });
 
-            loader.present();
-
-
-            let result = {};
-
-            let xhr = new XMLHttpRequest();
-            let params = '&&number=1';
-            xhr.open('GET', 'https://fish-text.ru/get?' + params, true);
+        loader.present();
 
 
-            xhr.onload = function () {
-                let resultObj = JSON.parse(this.responseText);
-                if (resultObj.status === 'success') {
-                    result = {
-                        status: 'success',
-                        text: resultObj.text
-                    };
-                    $this.messageData.comment = result;
-                    loader.dismiss();
-                    $this.readyResult = true;
-                    $this.messageDataText = true;
-                } else {
-                    toastText.present();
-                    loader.dismiss();
-                    $this.messageDataText = false;
-                }
-            };
+        let result = {};
 
-            xhr.onerror = function () {
+        let xhr = new XMLHttpRequest();
+        let params = '&&number=1';
+        xhr.open('GET', 'https://fish-text.ru/get?' + params, true);
+
+
+        xhr.onload = function () {
+            let resultObj = JSON.parse(this.responseText);
+            if (resultObj.status === 'success') {
                 result = {
-                    status: 'error',
-                    text: this.status
+                    status: 'success',
+                    text: resultObj.text
                 };
+                $this.messageData.comment = result;
+                loader.dismiss();
+                $this.readyGenerator = true;
+                $this.messageDataText = true;
+            } else {
                 toastText.present();
                 loader.dismiss();
                 $this.messageDataText = false;
+            }
+        };
 
+        xhr.onerror = function () {
+            result = {
+                status: 'error',
+                text: this.status
             };
-
-            xhr.send();
-
-        } else {
-            $this.messageData.comment = {};
+            toastText.present();
+            loader.dismiss();
             $this.messageDataText = false;
-        }
 
-        if (this.toggleSquare) {
+        };
+
+        xhr.send();
+
+        if (this.isProduction) {
 
             const toastDir = this.toastCtrl.create({
                 message: 'Не могу достучаться до папки. Сорян :(',
@@ -142,7 +133,7 @@ export class ResultPage {
                                     $this.imageURL = dataURL
                                 });
 
-                                $this.readyResult = true;
+                                $this.readyGenerator = true;
                                 $this.messageDataImage = true;
                             })
                             .catch((error) => {
@@ -162,10 +153,7 @@ export class ResultPage {
                     toastDir.present();
                     $this.messageDataImage = false;
                 });
-        } else {
-            $this.messageData.image = '';
-            $this.imageURL = '';
-            $this.messageDataImage = false;
+
         }
     }
 
@@ -173,7 +161,7 @@ export class ResultPage {
         this.ga.startTrackerWithId('UA-126805248-1')
             .then(() => {
                 console.log('Google analytics is ready now');
-                this.ga.trackEvent('engagement','share');
+                this.ga.trackEvent('engagement', 'share');
             })
             .catch(e => console.log('Error starting GoogleAnalytics', e));
 
@@ -188,5 +176,20 @@ export class ResultPage {
                 })
                 .catch((error) => toastShare.present());
         }
+    }
+
+    goToAbout() {
+        this.navCtrl.setRoot(AboutPage);
+        this.ga.startTrackerWithId('UA-126805248-1')
+            .then(() => {
+                console.log('Google analytics is ready now');
+                this.ga.trackView('About');
+            })
+            .catch(e => console.log('Error starting GoogleAnalytics', e));
+
+    }
+
+    ionViewDidLoad() {
+        this.getData()
     }
 }

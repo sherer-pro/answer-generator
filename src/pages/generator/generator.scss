@@ -13,11 +13,13 @@ page-generator {
     background-position: -65px 97px;
   }
 
-  .button {
-    position: absolute;
+  #generator-button {
+    position: fixed;
+    z-index: 99;
     left: 50%;
     transform: translateX(-50%);
     bottom: 35px;
+    margin: 0;
   }
 
   .help-circle {
