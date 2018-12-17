@@ -171,7 +171,7 @@ export class ResultPage {
         });
 
         if (this.messageData.comment.status === 'success' || this.messageData.image !== '') {
-            this.socialSharing.share(this.messageData.comment.text, '', this.messageData.image, '#alikimovichsblacksquares')
+            this.socialSharing.share(this.messageData.comment.text, '', this.messageData.image, '#answergenerator')
                 .then((entries) => {
                 })
                 .catch((error) => toastShare.present());
