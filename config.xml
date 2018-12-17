@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="pro.sherer.abs" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Alikimovich's Black Squares</name>
-    <description>Awesome! Alikimovich's Black Squares in mobile!</description>
+<widget id="pro.sherer.answer-generator" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Answer Generator</name>
+    <description>Awesome! Answer Generator in mobile!</description>
     <author email="pavel@sherer.pro" href="https://sherer.pro">Pavel Sherer</author>
     <content src="index.html" />
     <access origin="*" />

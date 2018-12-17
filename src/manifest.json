@@ -1,6 +1,6 @@
 {
-  "name": "Alikimovich's Black Squares",
-  "short_name": "ABS",
+  "name": "Answer Generator",
+  "short_name": "AGenerator",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{

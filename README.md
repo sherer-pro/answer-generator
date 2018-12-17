@@ -1,7 +1,7 @@
-# Alikimovich's Black Squares
+# Answer Generator
 
-#### Awesome! Alikimovich's Black Squares **in mobile**!
+#### Awesome! Answer Generator **in mobile**!
 
-![Alikimovich's Black Squares](https://github.com/sherer-pro/alikimovich-s-black-squares/raw/master/src/assets/imgs/logo.jpg)
+![Generator](https://github.com/sherer-pro/answer-generator/blob/master/src/assets/imgs/logo.png?raw=true)
 
 Thank you, Ionic.
