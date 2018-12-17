@@ -14,8 +14,7 @@
             </div>
             <div id="text-container" [class.hide]="!messageDataText">
                 <p>{{messageData.comment.text}}</p>
-                <img src="/assets/imgs/share.png" width="30" height="30" id="share-button" (click)="shareMessage()"
-                     [class.hide]="!readyGenerator"/>
+                <img src="/assets/imgs/share.png" width="30" height="30" id="share-button" (click)="shareMessage()" [class.hide]="!readyGenerator"/>
             </div>
         </div>
     </div>
