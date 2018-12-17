@@ -2,7 +2,7 @@
     <div id="generator-container">
         <h1>
             <span>Ваш ответ</span>
-            <img src="/assets/imgs/help-circle.png" width="24" height="24" (click)="goToAbout()" class="close-circle"/>
+            <img src="/assets/imgs/help.png" width="24" height="24" (click)="goToAbout()" class="close-circle"/>
         </h1>
         <div id="generator-bg" [class.hide]="readyGenerator">
             <img src=""/>
@@ -14,7 +14,7 @@
             </div>
             <div id="text-container" [class.hide]="!messageDataText">
                 <p>{{messageData.comment.text}}</p>
-                <img src="/assets/imgs/share.png" width="30" height="30" id="share-button" (click)="shareMessage()" [class.hide]="!readyGenerator"/>
+                <img src="/assets/imgs/share-icon.png" width="30" height="30" id="share-button" (click)="shareMessage()" [class.hide]="!readyGenerator"/>
             </div>
         </div>
     </div>
