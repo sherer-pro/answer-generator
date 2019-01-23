@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {LoadingController, ModalController, NavController, ToastController} from 'ionic-angular';
+import {LoadingController, ModalController, NavController, ToastController, Platform} from 'ionic-angular';
 import {File} from '@ionic-native/file';
 import {SocialSharing} from '@ionic-native/social-sharing';
 import {FileOpener} from '@ionic-native/file-opener';
@@ -16,6 +16,7 @@ export class ResultPage {
 
     constructor(
         public navCtrl: NavController,
+        public platform: Platform,
         public loadingCtrl: LoadingController,
         public file: File,
         public toastCtrl: ToastController,
@@ -119,22 +120,29 @@ export class ResultPage {
 
             const getImage = function () {
 
-                let filename = pad(randInt(1, 15), 2) + '.png';
+                let fileNumber = pad(randInt(1, 50), 2);
                 const ROOT_DIRECTORY = $this.file.cacheDirectory;
                 const downloadFolderName = 'tempDownload';
 
                 $this.file.createDir(ROOT_DIRECTORY, downloadFolderName, true)
                     .then((entries) => {
-                        $this.file.copyFile($this.file.applicationDirectory + 'www/assets/squares/', filename, ROOT_DIRECTORY + downloadFolderName + '//', filename)
+                        if (!Date.now) {
+                          Date.now = function() {
+                            return new Date().getTime();
+                          }
+                        }
+                        let newFilename = fileNumber + Date.now() + '.png';
+                        $this.file.copyFile($this.file.applicationDirectory + 'www/assets/squares/', fileNumber + '.png', ROOT_DIRECTORY + downloadFolderName + '//', newFilename)
                             .then((entries) => {
-                                $this.messageData.image = ROOT_DIRECTORY + downloadFolderName + '/' + filename;
+                                $this.messageData.image = ROOT_DIRECTORY + downloadFolderName + '/' + newFilename;
 
-                                $this.file.readAsDataURL(ROOT_DIRECTORY + downloadFolderName + '/', filename).then(dataURL => {
+                                $this.file.readAsDataURL(ROOT_DIRECTORY + downloadFolderName + '/', newFilename).then(dataURL => {
                                     $this.imageURL = dataURL
                                 });
 
                                 $this.readyGenerator = true;
                                 $this.messageDataImage = true;
+
                             })
                             .catch((error) => {
                                 toastFile.present();
@@ -146,8 +154,15 @@ export class ResultPage {
                         $this.messageDataImage = false;
                     });
             };
+            let dirPathSq = '';
+            if (this.platform.is('android')) {
+              dirPathSq = './squares/';
+            }
+            if (this.platform.is('ios')) {
+              dirPathSq = './www/assets/squares/';
+            }
 
-            this.file.checkDir(this.file.applicationDirectory, './squares/')
+            this.file.checkDir(this.file.applicationDirectory, dirPathSq)
                 .then((entries) => getImage())
                 .catch((error) => {
                     toastDir.present();
