@@ -55,8 +55,12 @@
   "description": "Awesome! Answer Generator in mobile!",
   "cordova": {
     "plugins": {
-      "cordova-plugin-google-analytics": {},
-      "cordova-plugin-x-socialsharing": {},
+      "cordova-plugin-google-analytics": {
+        "GMS_VERSION": "11.0.1"
+      },
+      "cordova-plugin-x-socialsharing": {
+        "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
+      },
       "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
@@ -66,7 +70,9 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-file": {},
-      "cordova-plugin-file-opener2": {},
+      "cordova-plugin-file-opener2": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
       "cordova-android-support-gradle-release": {
         "ANDROID_SUPPORT_VERSION": "24.+"
       }
